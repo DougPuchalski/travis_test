@@ -2,19 +2,26 @@ language: ruby
 rvm:
   - 1.9.3
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 env:
-  matrix:
-  - env: MATRIX_TEST=true
-  - env: MATRIX_TEST=false
+  global:
+    - BRANCH=coverity_scan
+#  matrix:
+#  - env: MATRIX_TEST=true
+#  - env: MATRIX_TEST=false
 
 #matrix:
 #  include:
 #  - branch: matrix
 
 script:
-  - ruby -e "puts 'hello script'"
-  - ruby -e "puts %Q{MATRIX_TEST: #{ENV['MATRIX_TEST']}}"
+  - if [ \"$TRAVIS_BRANCH\" == \"#{BRANCH}\" ]; then
+  -   echo "on scan branch"
+  -   exit 0
+  - else
+  -   echo "NOT on scan branch"
+  -   exit 1
+  - fi
