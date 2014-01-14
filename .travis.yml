@@ -1,4 +1,7 @@
 language: ruby
 rvm:
   - 1.9.3
-script: env
+matrix:
+  include:
+  - env: MATRIX_TEST=true
+script: ruby -r test
