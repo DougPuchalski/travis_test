@@ -1,8 +1,20 @@
 language: ruby
 rvm:
   - 1.9.3
-matrix:
-  include:
+
+branches:
+  only:
+    - master
+
+env:
+  matrix:
   - env: MATRIX_TEST=true
-  - branch: matrix
-script: ruby -r test
+  - env: MATRIX_TEST=false
+
+#matrix:
+#  include:
+#  - branch: matrix
+
+script:
+  - ruby -e "puts 'hello script'"
+  - ruby -e "puts %Q{MATRIX_TEST: #{ENV['MATRIX_TEST']}}"
