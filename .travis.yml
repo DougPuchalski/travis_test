@@ -4,4 +4,5 @@ rvm:
 matrix:
   include:
   - env: MATRIX_TEST=true
+  - branch: matrix
 script: ruby -r test
