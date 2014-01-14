@@ -18,7 +18,8 @@ env:
 #  - branch: matrix
 
 script:
-  - if [ \"$TRAVIS_BRANCH\" == \"#{BRANCH}\" ]; then
+  - env
+  - if [ \"$TRAVIS_BRANCH\" == \"coverity_scan\" ]; then
   -   echo "on scan branch"
   -   exit 0
   - else
