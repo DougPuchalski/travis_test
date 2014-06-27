@@ -17,12 +17,22 @@ env:
 #  include:
 #  - branch: matrix
 
-script:
-  - env
-  - if [ \"$TRAVIS_BRANCH\" == \"coverity_scan\" ]; then
-  -   echo "on scan branch"
-  -   exit 0
-  - else
-  -   echo "NOT on scan branch"
-  -   exit 1
-  - fi
+addons:
+  coverity_scan:
+    build_script_url: https://gist.githubusercontent.com/aceofspades/4bd0dd25f2cbfde5093c/raw/83d40507c04af0dd745b8007040a11284bd58c91/build_coverity_scan.sh
+    project:
+      name: aceofspades/travis_test
+      version: 0.0
+      description: Travis test
+    #email: nobody@nowhere.com
+    build_command: make -j 8
+
+#script:
+#  - echo "*** THIS SHOULD NOT APPEAR on coverity_scan branch ***"
+##  - if [ \"$TRAVIS_BRANCH\" == \"coverity_scan\" ]; then
+##  -   echo "on scan branch"
+##  -   exit 0
+##  - else
+##  -   echo "NOT on scan branch"
+##  -   exit 1
+##  - fi
